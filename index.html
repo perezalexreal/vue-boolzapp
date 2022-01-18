@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,23 +9,78 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
-    
+
     <div id="app">
-        <div class="containerChat"></div>
+        <div class="containerChat">
+
+
+            <div class="left-box">
+
+                <div class="first-left">
+
+                </div>
+                <div class="second-left">
+
+                </div>
+                <div class="third-left">
+                    <div class="box-input">
+                        <img class="search-icon"
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Vector_search_icon.svg/945px-Vector_search_icon.svg.png"
+                            alt="">
+                        <input placeholder="Cerca o inizia una nuova chat" class="search-input" type="text" name=""
+                            id="">
+                    </div>
+                    <div class="users">
+                        <div class="user" v-for="(user, i) in contacts">
+                            <img class="img-user" :src="[user.avatar]" alt="">
+                            <span class="name">{{ user.name }}</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="right-box">
+
+                <div class="first-right"></div>
+                <div class="second-right">
+                    <div v-for="contact in contacts">
+                        <div v-for="message in contact.messages">
+                            <div :class="message.status == 'sent' ? 'sent' : 'received'" class="message-box-chat">
+                                <p>
+                                    {{ message.text }}
+                                </p>
+                                <p>
+                                    {{ message.date }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="third-right"></div>
+            </div>
+
+
+
+
+        </div>
         <div class="header"></div>
-       
+
         <div class="container"></div>
-    
 
 
 
 
-        
+
+
     </div>
 
 
 
     <script src="./js/script.js"></script>
 </body>
+
 </html>

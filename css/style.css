@@ -2,12 +2,13 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    outline: none;
 }
 
 #app {
     display: flex;
     flex-direction: column;
-align-items: center;
+    align-items: center;
 }
 
 .header {
@@ -24,9 +25,124 @@ align-items: center;
 
 .containerChat {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 20px auto;
     background-color: lightpink;
     height: calc(100vh - 40px) ;
     position: absolute;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.left-box {
+    width: 40%;
+    height: 100%;
+    background-color: red;
+}
+.right-box {
+    width: 60%;
+    height: 100%;
+    background-color: blue;
+}
+
+.first-left , .first-right{
+    background-color: #eaeaea;
+    width: 100%;
+    height: 80px;
+}
+
+.first-right {
+    border-left: 1px solid lightgrey;
+}
+
+.second-left {
+    background-color: #8ddafb;
+    width: 100%;
+    height: 80px;
+}
+
+.second-right {
+    height: calc(100% - 160px);
+    width: 100%;
+    background-color: beige;
+    padding: 10px 15px;
+}
+.third-left {
+    background-color: #ffffff;
+    width: 100%;
+    height: calc(100% - 160px);
+    padding: 0px 10px;
+    padding-top: 20px;
+}
+.third-right {
+    background-color: #eaeaea;
+    width: 100%;
+    height: 80px;
+}
+
+
+.users {
+    margin-top: 10px;
+}
+
+.user {
+    padding: 10px 0px;
+}
+
+.img-user {
+    width: 40px;
+    height: 40px;
+    border-radius: 200px;
+    vertical-align: middle;
+}
+
+.name {
+    vertical-align: middle;
+}
+
+.search-input {
+    width: calc(100% - 40px);
+    border: 1px solid transparent;
+    height: 30px;
+    border-radius: 50px;
+    padding: 0px 10px;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    line-height: 30px;
+}
+
+.box-input {
+    padding: 10px 0px;
+    border-radius: 10px;
+    border: 1px solid lightgrey;
+    padding-left: 10px ;
+}
+
+.sent {
+    text-align: right;
+    margin-right: 10px;
+    background-color: #d4faba;
+    margin-left: auto; 
+    margin-right: 0;
+}
+
+.received {
+    text-align: left;
+    margin-left: 10px;
+    background-color: white;
+    margin-right: auto; 
+    margin-left: 0;
+}
+
+.message-box-chat {
+    height:60px;
+    padding: 10px 30px;
+    width: 300px;
+    border-radius: 10px;
+    margin-top: 10px;
 }
