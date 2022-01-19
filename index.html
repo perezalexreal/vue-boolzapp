@@ -33,7 +33,7 @@
                             id="">
                     </div>
                     <div class="users">
-                        <div class="user" v-for="(user, i) in contacts">
+                        <div class="user" v-for="(user, i) in contacts" @click="selectChat(i)">
                             <img class="img-user" :src="[user.avatar]" alt="">
                             <span class="name">{{ user.name }}</span>
                         </div>
@@ -48,19 +48,26 @@
                 <div class="first-right"></div>
                 <div class="second-right">
                     <div v-for="contact in contacts">
-                        <div v-for="message in contact.messages">
+                        <div v-for="message in contact.messages" :class="contact.name  == currentChat ? '' : 'none'">
                             <div :class="message.status == 'sent' ? 'sent' : 'received'" class="message-box-chat">
+
                                 <p>
                                     {{ message.text }}
                                 </p>
                                 <p>
                                     {{ message.date }}
                                 </p>
+
+
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="third-right"></div>
+                <div class="third-right">
+                    <img src="" alt="">
+                    <input type="text"  class="search-input" placeholder="Scrivi un messaggio"  v-model="messageToSend" @keyup.enter="addMessage(currentChat)" >
+                   <img src="" alt="">
+                </div>
             </div>
 
 
