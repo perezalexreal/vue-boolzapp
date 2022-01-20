@@ -33,7 +33,7 @@
                             id="" v-model="searchString">
                     </div>
                     <div class="users" class="user" v-for="(user, i) in contacts" @click="selectChat(i)">
-                        <div  v-if="user.name.toLowerCase().includes(searchString.toLowerCase())">
+                        <div v-if="user.name.toLowerCase().includes(searchString.toLowerCase())">
 
                             <img class="img-user" :src="[user.avatar]" alt="">
                             <span class="name">{{ user.name }}</span>
@@ -50,24 +50,29 @@
                 <div class="first-right"></div>
                 <div class="second-right">
 
-                        <div v-for="contact in contacts[currentChat].messages">
-                            <div :class="contact.status" class="message-box-chat">
-
-                                <p>
-                                    {{ contact.text }}
-                                </p>
-                                <p>
-                                    {{ contact.date }}
-                                </p>
-
-
-                            </div>
+                    <div v-for="(contact, i) in contacts[currentChat].messages">
+                        <div :class="contact.status" class="message-box-chat">
+                            <span class="open-modal" @click="openModal(i)">
+                                ↓
+                            </span>
+                            <p>
+                                {{ contact.text }}
+                            </p>
+                            <p>
+                                {{ contact.date }}
+                            </p>
                         </div>
+                        <div v-if="modalMessageOption == true && currentMessage == i">
+                            <div @click="deleteMessage(i)"> Cancella Messaggio </div>
+                            <div> Info</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="third-right">
                     <img src="" alt="">
-                    <input type="text"  class="search-input" placeholder="Scrivi un messaggio"  v-model="messageToSend" @keyup.enter="sendMessageTo(contacts[currentChat])" >
-                   <img src="" alt="">
+                    <input type="text" class="search-input" placeholder="Scrivi un messaggio" v-model="messageToSend"
+                        @keyup.enter="sendMessageTo(contacts[currentChat])">
+                    <img src="" alt="">
                 </div>
             </div>
 

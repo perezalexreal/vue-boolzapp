@@ -4,6 +4,8 @@ new Vue({
         messageToSend: '',
         currentChat: 0,
         searchString: '',
+        modalMessageOption: false,
+        currentMessage: 0,
         contacts: [
             {
                 name: 'Michele',
@@ -93,6 +95,7 @@ new Vue({
     methods: {
         selectChat: function (index) {
             this.currentChat = index;
+            this.modalMessageOption = false;
         },
         sendMessageTo: function (contact) {
             contact.messages.push({
@@ -110,6 +113,14 @@ new Vue({
                 text: 'Ok',
                 status: 'received'
             })
+        },
+        openModal(index){
+            this.modalMessageOption = !this.modalMessageOption
+            this.currentMessage = index;
+        },
+        deleteMessage(index){
+            this.contacts[this.currentChat].messages.splice(index, 1);
+            this.modalMessageOption = false;
         }
     }
 });

@@ -154,3 +154,15 @@ align-items: center;
 .none {
     display: none;
 }
+
+.received .open-modal {
+    position: absolute;
+    z-index: 999;
+    margin-left: -20px;
+}
+
+.sent .open-modal {
+    position: absolute;
+    z-index: 999;
+    margin-left: 10px;
+}
