@@ -2,7 +2,8 @@ new Vue({
     el: "#app",
     data: {
         messageToSend: '',
-        currentChat: 'Michele',
+        currentChat: 0,
+        searchString: '',
         contacts: [
             {
                 name: 'Michele',
@@ -90,19 +91,25 @@ new Vue({
         ]
     },
     methods: {
-        selectChat: function(i){
-            this.currentChat = this.contacts[i].name;
+        selectChat: function (index) {
+            this.currentChat = index;
         },
-        addMessage: function(currentChat) {
-            this.contacts.forEach(element => {
-                if( currentChat == element.name){
-                    element.messages.push({date: new Date().toLocaleString().replace(',', ''), text:  this.messageToSend , status: 'sent'})
-                    this.messageToSend = '';
-                    setTimeout(() => {
-                        element.messages.push({date: new Date().toLocaleString().replace(',', ''), text:  'Ok', status: 'received'})
-                    }, 1000);
-                }
+        sendMessageTo: function (contact) {
+            contact.messages.push({
+                date: new Date().toLocaleString().replace(',', ''),
+                text: this.messageToSend, status: 'sent'
             });
+            this.messageToSend = '';
+            setTimeout(() => {
+                this.autoReply(contact);
+            }, 1000);
+        },
+        autoReply(contact) {
+            contact.messages.push({
+                date: new Date().toLocaleString().replace(',', ''),
+                text: 'Ok',
+                status: 'received'
+            })
         }
     }
 });

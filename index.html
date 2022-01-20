@@ -30,12 +30,14 @@
                             src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Vector_search_icon.svg/945px-Vector_search_icon.svg.png"
                             alt="">
                         <input placeholder="Cerca o inizia una nuova chat" class="search-input" type="text" name=""
-                            id="">
+                            id="" v-model="searchString">
                     </div>
-                    <div class="users">
-                        <div class="user" v-for="(user, i) in contacts" @click="selectChat(i)">
+                    <div class="users" class="user" v-for="(user, i) in contacts" @click="selectChat(i)">
+                        <div  v-if="user.name.toLowerCase().includes(searchString.toLowerCase())">
+
                             <img class="img-user" :src="[user.avatar]" alt="">
                             <span class="name">{{ user.name }}</span>
+
                         </div>
                     </div>
                 </div>
@@ -47,25 +49,24 @@
 
                 <div class="first-right"></div>
                 <div class="second-right">
-                    <div v-for="contact in contacts">
-                        <div v-for="message in contact.messages" :class="contact.name  == currentChat ? '' : 'none'">
-                            <div :class="message.status == 'sent' ? 'sent' : 'received'" class="message-box-chat">
+
+                        <div v-for="contact in contacts[currentChat].messages">
+                            <div :class="contact.status" class="message-box-chat">
 
                                 <p>
-                                    {{ message.text }}
+                                    {{ contact.text }}
                                 </p>
                                 <p>
-                                    {{ message.date }}
+                                    {{ contact.date }}
                                 </p>
 
 
                             </div>
                         </div>
-                    </div>
                 </div>
                 <div class="third-right">
                     <img src="" alt="">
-                    <input type="text"  class="search-input" placeholder="Scrivi un messaggio"  v-model="messageToSend" @keyup.enter="addMessage(currentChat)" >
+                    <input type="text"  class="search-input" placeholder="Scrivi un messaggio"  v-model="messageToSend" @keyup.enter="sendMessageTo(contacts[currentChat])" >
                    <img src="" alt="">
                 </div>
             </div>
